@@ -1,0 +1,18 @@
+{
+  "id": "scam-03",
+  "title": "TRAI SIM block → fake police (Hindi)",
+  "label": "scam",
+  "language": "hindi",
+  "notes": "Hindi (Devanagari) version, as Whisper may transcribe Hindi speech in Devanagari script.",
+  "lines": [
+    { "t": 0,   "speaker": "caller", "text": "नमस्ते, मैं TRAI से बोल रहा हूँ। आपका मोबाइल नंबर दो घंटे में बंद कर दिया जाएगा।", "stages": ["impersonation", "urgency"] },
+    { "t": 9,   "speaker": "user",   "text": "क्यों? मैंने क्या किया है?", "stages": [] },
+    { "t": 13,  "speaker": "caller", "text": "आपके आधार से लिया गया सिम गलत कामों में इस्तेमाल हुआ है। मैं आपकी कॉल पुलिस को ट्रांसफर कर रहा हूँ।", "stages": ["accusation"] },
+    { "t": 23,  "speaker": "caller", "text": "मैं क्राइम ब्रांच से इंस्पेक्टर बोल रहा हूँ। आपके खिलाफ मनी लॉन्ड्रिंग का केस दर्ज है।", "stages": ["impersonation", "accusation"] },
+    { "t": 33,  "speaker": "caller", "text": "आप अभी डिजिटल अरेस्ट में हैं। कैमरा ऑन रखिए और फोन मत काटिए।", "stages": ["isolation"] },
+    { "t": 41,  "speaker": "caller", "text": "यह गोपनीय जांच है, किसी को मत बताइए।", "stages": ["isolation"] },
+    { "t": 48,  "speaker": "user",   "text": "ठीक है साहब।", "stages": [] },
+    { "t": 51,  "speaker": "caller", "text": "अगर सहयोग नहीं किया तो तुरंत गिरफ्तार कर लिया जाएगा और जेल जाना होगा।", "stages": ["urgency"] },
+    { "t": 60,  "speaker": "caller", "text": "जांच के लिए अपने खाते के सारे पैसे आरबीआई खाते में ट्रांसफर कीजिए।", "stages": ["money"] }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "id": "scam-01",
+  "title": "Fake CBI officer: money laundering (Hinglish)",
+  "label": "scam",
+  "language": "hinglish",
+  "notes": "Based on the common pattern reported in news: Aadhaar linked to a money laundering case, victim kept on video call, asked to move savings to an 'RBI verification account'.",
+  "lines": [
+    { "t": 0,   "speaker": "caller", "text": "Hello, kya main Sharma ji se baat kar raha hoon?", "stages": [] },
+    { "t": 5,   "speaker": "user",   "text": "Haan ji, boliye, kaun?", "stages": [] },
+    { "t": 9,   "speaker": "caller", "text": "Main Inspector Vikram Singh, CBI Delhi headquarters se bol raha hoon.", "stages": ["impersonation"] },
+    { "t": 16,  "speaker": "caller", "text": "Aapke Aadhaar card se ek bank account khula hai jo money laundering case mein use hua hai.", "stages": ["accusation"] },
+    { "t": 24,  "speaker": "user",   "text": "Kya? Maine toh aisa kuch nahi kiya sir.", "stages": [] },
+    { "t": 29,  "speaker": "caller", "text": "Aapke naam pe FIR darj ho chuki hai aur arrest warrant nikal chuka hai.", "stages": ["accusation", "urgency"] },
+    { "t": 37,  "speaker": "caller", "text": "Ab aap digital arrest mein hain. Video call pe camera on rakhiye, room se bahar mat jaiye.", "stages": ["isolation"] },
+    { "t": 46,  "speaker": "caller", "text": "Yeh national security ka matter hai, kisi ko bhi mat batana, family ko bhi nahi.", "stages": ["isolation"] },
+    { "t": 55,  "speaker": "user",   "text": "Theek hai sir, main kisi ko nahi bataunga.", "stages": [] },
+    { "t": 60,  "speaker": "caller", "text": "Agar aap cooperate nahi karenge toh 2 ghante mein local police team aapke ghar aa jayegi.", "stages": ["urgency"] },
+    { "t": 70,  "speaker": "caller", "text": "Aapke bank account mein kitna balance hai? Account details bataiye.", "stages": ["money"] },
+    { "t": 78,  "speaker": "caller", "text": "Verification ke liye saare paise RBI ke safe account mein transfer karne honge. Jaanch ke baad refund ho jayega.", "stages": ["money"] },
+    { "t": 88,  "speaker": "caller", "text": "Abhi turant RTGS kariye, warna aapko jail jaana padega.", "stages": ["money", "urgency"] }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "id": "genuine-01",
+  "title": "Genuine bank call: suspicious card transaction",
+  "label": "genuine",
+  "language": "hinglish",
+  "notes": "Hard negative: mentions money, urgency and a transaction, but no officer, no accusation, no transfer demand.",
+  "lines": [
+    { "t": 0,  "speaker": "caller", "text": "Namaste, main HDFC Bank ke fraud monitoring team se bol rahi hoon.", "stages": [] },
+    { "t": 6,  "speaker": "caller", "text": "Aapke credit card pe abhi ₹45,000 ka ek transaction try hua hai, kya yeh aapne kiya?", "stages": [] },
+    { "t": 14, "speaker": "user",   "text": "Nahi, maine koi transaction nahi kiya.", "stages": [] },
+    { "t": 18, "speaker": "caller", "text": "Koi baat nahi, hum aapki safety ke liye card turant block kar rahe hain.", "stages": [] },
+    { "t": 25, "speaker": "caller", "text": "Naya card 7 din mein aapke registered address pe aa jayega.", "stages": [] },
+    { "t": 31, "speaker": "caller", "text": "Yaad rakhiye, bank kabhi bhi call pe OTP, PIN ya password nahi maangta.", "stages": [] },
+    { "t": 38, "speaker": "caller", "text": "Agar aapko koi aur doubt hai toh card ke peeche likhe number pe call kar lijiye. Dhanyavaad.", "stages": [] }
+  ]
+}

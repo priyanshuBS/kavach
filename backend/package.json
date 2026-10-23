@@ -1,0 +1,14 @@
+{
+  "name": "kavach-backend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Kavach: live guard against digital arrest scam calls (backend)",
+  "type": "module",
+  "engines": { "node": ">=20.19" },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "eval": "node scripts/evaluate.js",
+    "telegram:chatid": "node scripts/telegram-chat-id.js"
+  }
+}

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="kavach_accessibility_label">Kavach call guard</string>
+  <string name="kavach_accessibility_description">Lets Kavach listen during phone and WhatsApp calls to detect digital arrest scams, and show a warning on top of the call screen. Kavach does not read your screen.</string>
+</resources>

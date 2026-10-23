@@ -1,0 +1,20 @@
+{
+  "id": "scam-02",
+  "title": "Courier parcel with drugs → 'Mumbai Police' (English)",
+  "label": "scam",
+  "language": "english",
+  "notes": "The 'parcel scam' variant: a fake courier call is transferred to a fake police officer on Skype.",
+  "lines": [
+    { "t": 0,   "speaker": "caller", "text": "Good morning madam, this call is from the courier company. A parcel booked in your name has been stopped by customs.", "stages": [] },
+    { "t": 9,   "speaker": "user",   "text": "A parcel? I did not send any parcel.", "stages": [] },
+    { "t": 13,  "speaker": "caller", "text": "The parcel to Taiwan contains five passports and 200 grams of MD drugs. I am connecting you to the Mumbai cyber crime police.", "stages": ["accusation", "impersonation"] },
+    { "t": 24,  "speaker": "caller", "text": "This is DCP Rakesh Kumar, Mumbai Police cyber cell. Your Aadhaar is linked to illegal activities and a case is registered against you.", "stages": ["impersonation", "accusation"] },
+    { "t": 35,  "speaker": "user",   "text": "Sir, there must be some mistake.", "stages": [] },
+    { "t": 39,  "speaker": "caller", "text": "Please join the Skype video call and stay in front of the camera for the investigation.", "stages": ["isolation"] },
+    { "t": 47,  "speaker": "caller", "text": "This is a confidential matter. Do not tell anyone, not even your family, otherwise they will also be arrested.", "stages": ["isolation", "urgency"] },
+    { "t": 57,  "speaker": "caller", "text": "Do not disconnect the call. If you cut the call, a team will arrest you within 30 minutes.", "stages": ["isolation", "urgency"] },
+    { "t": 66,  "speaker": "user",   "text": "Okay sir, I am cooperating. What should I do?", "stages": [] },
+    { "t": 71,  "speaker": "caller", "text": "We need to verify your funds. Break your fixed deposits and transfer the money to the supervised account given by the RBI.", "stages": ["money"] },
+    { "t": 82,  "speaker": "caller", "text": "After the verification is complete, the full amount will be refunded within 24 hours.", "stages": ["money"] }
+  ]
+}

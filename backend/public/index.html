@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Kavach Live</title>
+<style>
+  :root {
+    --bg: #0a0f1e; --surface: #121a30; --surface2: #1a2440; --line: #26314f;
+    --text: #eef2ff; --muted: #8b97b8; --saffron: #ff9f1c; --safe: #2ec4a6;
+    --caution: #ffc145; --danger: #ff4d5e;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body { background: var(--bg); color: var(--text); font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; min-height: 100vh; }
+  header { display: flex; align-items: center; gap: 12px; padding: 18px 28px; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+  .logo { width: 34px; height: 34px; }
+  h1 { font-size: 20px; letter-spacing: .5px; }
+  h1 span { color: var(--saffron); }
+  .pill { font-size: 12px; padding: 4px 10px; border-radius: 99px; background: var(--surface2); color: var(--muted); }
+  .pill.on { color: var(--safe); }
+  .spacer { flex: 1; }
+  select, button { font: inherit; background: var(--surface2); color: var(--text); border: 1px solid var(--line); border-radius: 10px; padding: 8px 12px; }
+  button.primary { background: var(--saffron); color: #1a1205; border: none; font-weight: 700; cursor: pointer; }
+  button:disabled { opacity: .5; }
+  main { display: grid; grid-template-columns: 360px 1fr; gap: 20px; padding: 24px 28px; max-width: 1300px; margin: 0 auto; }
+  @media (max-width: 900px) { main { grid-template-columns: 1fr; padding: 16px; } header { padding: 14px 16px; } }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 20px; }
+  .ring-wrap { display: grid; place-items: center; position: relative; }
+  .ring-text { position: absolute; text-align: center; }
+  .ring-text b { font-size: 56px; font-weight: 800; display: block; line-height: 1; }
+  .ring-text small { color: var(--muted); text-transform: uppercase; letter-spacing: 2px; font-size: 12px; }
+  .reason { text-align: center; margin-top: 10px; color: var(--muted); min-height: 24px; }
+  .stages { display: grid; gap: 10px; margin-top: 18px; }
+  .stage { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 14px; background: var(--surface2); border: 1px solid transparent; transition: all .4s; }
+  .stage .num { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; background: var(--line); font-size: 13px; font-weight: 700; flex-shrink: 0; }
+  .stage .name { flex: 1; font-weight: 600; }
+  .stage .bar { width: 70px; height: 6px; border-radius: 3px; background: var(--line); overflow: hidden; }
+  .stage .bar i { display: block; height: 100%; width: 0; background: var(--caution); transition: width .5s; }
+  .stage.hit { border-color: var(--danger); background: rgba(255,77,94,.12); }
+  .stage.hit .num { background: var(--danger); }
+  .stage.hit .bar i { background: var(--danger); }
+  .transcript { height: calc(100vh - 190px); min-height: 400px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; padding-right: 6px; }
+  .line { display: flex; gap: 12px; animation: in .35s ease; }
+  .line .t { color: var(--muted); font-size: 12px; width: 42px; flex-shrink: 0; padding-top: 3px; font-variant-numeric: tabular-nums; }
+  .line .bubble { background: var(--surface2); padding: 10px 14px; border-radius: 4px 14px 14px 14px; max-width: 760px; }
+  .line.user .bubble { background: #17233a; }
+  .line .who { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+  .tags { display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap; }
+  .tag { font-size: 11px; padding: 2px 8px; border-radius: 99px; background: rgba(255,77,94,.15); color: #ff8a95; }
+  .empty { color: var(--muted); margin: auto; text-align: center; }
+  .alert { display: none; position: fixed; inset: 0; background: rgba(120,0,16,.92); z-index: 10; place-items: center; text-align: center; padding: 24px; }
+  .alert.show { display: grid; animation: pulse 1.2s ease 2; }
+  .alert h2 { font-size: clamp(32px, 6vw, 64px); }
+  .alert p { font-size: clamp(18px, 3vw, 28px); margin: 16px auto; max-width: 800px; }
+  .alert .tg { font-size: 16px; opacity: .8; }
+  .alert button { margin-top: 20px; }
+  @keyframes in { from { opacity: 0; transform: translateY(6px); } }
+  @keyframes pulse { 50% { background: rgba(200,0,30,.97); } }
+</style>
+</head>
+<body>
+<header>
+  <svg class="logo" viewBox="0 0 64 64"><path d="M32 4 8 13v17c0 15 10 26 24 30 14-4 24-15 24-30V13L32 4z" fill="#ff9f1c"/><path d="m22 32 7 7 13-14" stroke="#0a0f1e" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  <h1>KAVACH <span>LIVE</span></h1>
+  <span class="pill" id="pGroq">Groq</span>
+  <span class="pill" id="pTg">Telegram</span>
+  <span class="spacer"></span>
+  <select id="demoSelect"><option>Loading demo calls…</option></select>
+  <button class="primary" id="demoBtn">▶ Play demo call</button>
+</header>
+
+<main>
+  <section class="card">
+    <div class="ring-wrap">
+      <svg width="240" height="240" viewBox="0 0 240 240">
+        <circle cx="120" cy="120" r="100" stroke="#26314f" stroke-width="18" fill="none"/>
+        <circle id="ring" cx="120" cy="120" r="100" stroke="#2ec4a6" stroke-width="18" fill="none"
+          stroke-linecap="round" stroke-dasharray="628" stroke-dashoffset="628" transform="rotate(-90 120 120)"
+          style="transition: stroke-dashoffset .6s, stroke .6s"/>
+      </svg>
+      <div class="ring-text"><b id="score">0</b><small id="level">waiting</small></div>
+    </div>
+    <div class="reason" id="reason">Start a call on the phone or play a demo call</div>
+    <div class="stages" id="stages"></div>
+  </section>
+
+  <section class="card">
+    <div class="transcript" id="transcript"><div class="empty">The live transcript will appear here.</div></div>
+  </section>
+</main>
+
+<div class="alert" id="alert">
+  <div>
+    <h2>⚠️ SCAM ALERT</h2>
+    <p>This call matches the <b>digital arrest</b> scam.<br/>Real police never arrest anyone on a video call.<br/><b>Hang up and call 1930.</b></p>
+    <div class="tg" id="tgStatus"></div>
+    <button onclick="document.getElementById('alert').classList.remove('show')">Close</button>
+  </div>
+</div>
+
+<script>
+const STAGES = [
+  ['impersonation', 'Fake officer'], ['accusation', 'Accusation'], ['isolation', 'Isolation'],
+  ['urgency', 'Urgency / threat'], ['money', 'Money demand'],
+];
+const COLORS = { safe: '#2ec4a6', caution: '#ffc145', danger: '#ff4d5e' };
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s).replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+let shownAlertFor = null, lastKey = '', demoCalls = [], playing = false;
+
+$('stages').innerHTML = STAGES.map(([id, name], i) =>
+  `<div class="stage" id="st-${id}"><div class="num">${i + 1}</div><div class="name">${name}</div><div class="bar"><i></i></div></div>`).join('');
+
+function render(s) {
+  if (!s) return;
+  const key = s.id + ':' + s.transcript.length + ':' + s.risk.score + ':' + s.alert.telegram;
+  if (key === lastKey) return;
+  lastKey = key;
+  const r = s.risk;
+  $('score').textContent = r.score;
+  $('level').textContent = r.level;
+  $('reason').textContent = s.llmNote || r.reason;
+  $('ring').style.strokeDashoffset = 628 - (628 * r.score) / 100;
+  $('ring').style.stroke = COLORS[r.level];
+  $('score').style.color = COLORS[r.level];
+  for (const [id] of STAGES) {
+    const c = s.stages[id]?.confidence || 0;
+    $('st-' + id).classList.toggle('hit', c >= 0.5);
+    $('st-' + id).querySelector('i').style.width = Math.round(c * 100) + '%';
+  }
+  const label = Object.fromEntries(STAGES);
+  $('transcript').innerHTML = s.transcript.length ? s.transcript.map((l) => `
+    <div class="line ${l.speaker === 'user' ? 'user' : ''}">
+      <div class="t">${Math.floor(l.t / 60)}:${String(l.t % 60).padStart(2, '0')}</div>
+      <div class="bubble"><div class="who">${l.speaker === 'user' ? 'Victim' : l.speaker === 'call' ? 'Call audio' : 'Caller'}</div>${esc(l.text)}
+      ${l.hits?.length ? `<div class="tags">${l.hits.map((h) => `<span class="tag">${label[h]}</span>`).join('')}</div>` : ''}</div>
+    </div>`).join('') : '<div class="empty">Listening… waiting for speech.</div>';
+  $('transcript').scrollTop = $('transcript').scrollHeight;
+  if (s.alert.fired) {
+    $('tgStatus').textContent = { sent: '📲 Family alerted on Telegram', sending: 'Sending Telegram alert…', failed: 'Telegram alert failed' }[s.alert.telegram] || 'Telegram not configured';
+    if (shownAlertFor !== s.id) { shownAlertFor = s.id; $('alert').classList.add('show'); }
+  }
+}
+
+async function poll() {
+  try { render(await (await fetch('/api/sessions/latest')).json()); } catch {}
+  setTimeout(poll, 800);
+}
+
+async function init() {
+  const h = await (await fetch('/api/health')).json();
+  $('pGroq').textContent = h.llm ? 'Groq AI on' : 'Rules only';
+  $('pGroq').classList.toggle('on', h.groq);
+  $('pTg').textContent = h.telegram ? 'Telegram on' : 'Telegram off';
+  $('pTg').classList.toggle('on', h.telegram);
+  demoCalls = await (await fetch('/api/demo-calls')).json();
+  $('demoSelect').innerHTML = demoCalls.map((c, i) => `<option value="${i}">${c.label === 'scam' ? '🚨' : '✅'} ${esc(c.title)}</option>`).join('');
+  poll();
+}
+
+$('demoBtn').onclick = async () => {
+  if (playing) return;
+  playing = true; $('demoBtn').disabled = true;
+  const call = demoCalls[$('demoSelect').value];
+  const s = await (await fetch('/api/sessions', { method: 'POST', body: JSON.stringify({ source: 'demo', title: call.title }) })).json();
+  for (const line of call.lines) {
+    await fetch(`/api/sessions/${s.id}/text`, { method: 'POST', body: JSON.stringify({ text: line.text, speaker: line.speaker }) });
+    await new Promise((r) => setTimeout(r, 2200));
+  }
+  await fetch(`/api/sessions/${s.id}/end`, { method: 'POST' });
+  playing = false; $('demoBtn').disabled = false;
+};
+
+init();
+</script>
+</body>
+</html>

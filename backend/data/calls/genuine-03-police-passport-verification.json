@@ -1,0 +1,14 @@
+{
+  "id": "genuine-03",
+  "title": "Genuine police call: passport verification",
+  "label": "genuine",
+  "language": "hinglish",
+  "notes": "Hard negative: a real police station calls, but asks the person to visit in person; no accusation, no secrecy, no money.",
+  "lines": [
+    { "t": 0,  "speaker": "caller", "text": "Namaste, main Kotwali police station se constable Ramesh bol raha hoon.", "stages": [] },
+    { "t": 6,  "speaker": "caller", "text": "Aapne passport ke liye apply kiya tha, uska police verification karna hai.", "stages": [] },
+    { "t": 13, "speaker": "user",   "text": "Haan ji, kab aana hoga?", "stages": [] },
+    { "t": 16, "speaker": "caller", "text": "Kal subah 11 baje thane aa jaiye, Aadhaar card aur address proof ki original copy le aana.", "stages": [] },
+    { "t": 24, "speaker": "caller", "text": "Agar kal nahi aa sakte toh parso aa jaana, koi dikkat nahi. Dhanyavaad.", "stages": [] }
+  ]
+}

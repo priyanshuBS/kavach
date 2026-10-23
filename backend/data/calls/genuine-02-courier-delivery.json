@@ -1,0 +1,14 @@
+{
+  "id": "genuine-02",
+  "title": "Genuine courier call: delivery address",
+  "label": "genuine",
+  "language": "hinglish",
+  "notes": "Hard negative: mentions a parcel and a payment (cash on delivery).",
+  "lines": [
+    { "t": 0,  "speaker": "caller", "text": "Hello sir, Delhivery se bol raha hoon, aapka parcel aaya hai.", "stages": [] },
+    { "t": 5,  "speaker": "caller", "text": "Address mein flat number nahi likha hai, thoda location bata dijiye.", "stages": [] },
+    { "t": 11, "speaker": "user",   "text": "B-204, gate number 2 ke saamne.", "stages": [] },
+    { "t": 15, "speaker": "caller", "text": "Theek hai, cash on delivery hai, ₹899 ready rakhiye ya UPI se de dijiye.", "stages": [] },
+    { "t": 22, "speaker": "caller", "text": "Main 20 minute mein pahunch jaunga. Thank you sir.", "stages": [] }
+  ]
+}

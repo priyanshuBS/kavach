@@ -1,0 +1,30 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+  <uses-permission android:name="android.permission.RECORD_AUDIO" />
+  <uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+  <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE" />
+  <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+  <uses-permission android:name="android.permission.VIBRATE" />
+
+  <application>
+    <!-- Keeps listening in the background while the guard is on -->
+    <service
+      android:name="expo.modules.kavachguard.GuardService"
+      android:exported="false"
+      android:foregroundServiceType="microphone" />
+
+    <!-- Lets Kavach hear the mic during a call and draw the warning over the call screen -->
+    <service
+      android:name="expo.modules.kavachguard.KavachAccessibilityService"
+      android:exported="true"
+      android:label="@string/kavach_accessibility_label"
+      android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+      <intent-filter>
+        <action android:name="android.accessibilityservice.AccessibilityService" />
+      </intent-filter>
+      <meta-data
+        android:name="android.accessibilityservice"
+        android:resource="@xml/kavach_accessibility_config" />
+    </service>
+  </application>
+</manifest>
